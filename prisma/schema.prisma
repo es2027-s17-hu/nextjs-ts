@@ -1,0 +1,9 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "mysql"
+}

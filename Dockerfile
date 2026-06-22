@@ -58,11 +58,11 @@ ENV NODE_ENV=production
 # .next/cache/fetch-cache from being included in the final image, meaning
 # cached fetch responses from the build won't be available at runtime.
 RUN if [ -f package-lock.json ]; then \
-    npm run build; \
+    npm run prisma-no-proxy generate && npm run build; \
   elif [ -f yarn.lock ]; then \
-    corepack enable yarn && yarn build; \
+    corepack enable yarn && yarn prisma-no-proxy generate && yarn build; \
   elif [ -f pnpm-lock.yaml ]; then \
-    corepack enable pnpm && pnpm build; \
+    corepack enable pnpm && pnpm prisma-no-proxy generate && pnpm build; \
   else \
     echo "No lockfile found." && exit 1; \
   fi
